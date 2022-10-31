@@ -1,2 +1,2 @@
 # themes
-Themes for model visualization - PlantUml, Structurizr, etc.
+Themes for content model visualization - PlantUml, Structurizr, etc.
