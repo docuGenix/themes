@@ -1,0 +1,107 @@
+/'
+A PlantUml include file with styling and macros for describing
+Microsoft 365 managed metadata and content type definitions.
+'/
+
+' M365 Styling
+
+allow_mixing
+skinparam linetype polyline
+skinparam BackgroundColor transparent
+skinparam ArrowFontSize 8
+skinparam FrameFontSize 9
+skinparam RectangleFontSize 9
+skinparam ClassStereotypeFontSize 9
+skinparam dpi 600
+
+skinparam package {
+	Shadowing true
+}
+
+skinparam rectangle<<tenant>> {
+	roundCorner 25
+	borderThickness 2;line.dotted
+}
+
+skinparam rectangle<<termstore>> {
+	roundCorner 25
+	borderThickness 1;line.dashed
+}
+
+skinparam rectangle<<contenttype-hub>> {
+	roundCorner 25
+	borderThickness 1;line.dashed
+}
+
+skinparam rectangle<<sharepoint>> {
+	roundCorner 25
+	borderThickness 1;line.dashed
+	borderColor #royalBlue
+}
+
+skinparam package<<termgroup>> {
+	borderThickness 1
+	BackgroundColor #99CCFF
+}
+
+skinparam object<<contenttype>> {
+	backgroundColor #C2E4BCAA
+}
+
+skinparam frame<<teamsite>> {
+	roundCorner 10
+	backgroundColor #EFEFEF
+}
+
+skinparam frame<<hubsite>> {
+	roundCorner 10
+	backgroundColor #FFE59999
+}
+
+skinparam frame<<documentlibrary>> {
+	roundCorner 30
+}
+
+' M365 Macros
+
+!define Tenant(alias, title) rectangle "title" as alias <<tenant>>
+!define TermStore(alias) rectangle " " as alias <<termstore>>
+!define TermGroup(alias, title) rectangle "title" as alias <<termgroup>>
+!define TermSet(alias, title) object "title" as alias <<termset>>
+!define TermSetDescription(text) <size:10><color:RoyalBlue>text</color></size>
+!define Term(title) o title
+
+!define ContentTypeHub(alias) rectangle " " as alias <<contenttype-hub>>
+!define ContentTypeGallery(alias) rectangle " " as alias <<contenttype-gallery>>
+!define ContentType(alias, title) object "title" as alias <<contenttype>>
+!define ContentTypeDescription(text) <size:10><color:RoyalBlue>text</color></size>
+!define LibraryUsesContentType(library, type) library "uses" *.. type
+!define ContentTypeInherits(child, parent) child ..|> parent : inherits
+
+!define Field(fieldName, fieldType) +fieldName : fieldType
+!define MetadataField(fieldName) *<b>fieldName : ManagedMetadata
+!define FieldReferencesTermSet(type, field, termset) type::field ..o termset
+
+!define SharePointOnline(title) rectangle "title" as SharePoint <<sharepoint>>
+!define TeamSite(alias, title) frame "title" as alias <<teamsite>>
+!define HubSite(alias, title) frame "title" as alias <<hubsite>>
+!define TeamSiteReferencesHubSite(site, hub) site --o hub
+
+!define DocumentLibrary(alias, title) rectangle "title" as alias <<documentlibrary>>
+!define DocumentLibraryDescription(text) <i><color:RoyalBlue>text</i>
+
+/'
+Example:
+
+Tenant(m365, An M365 Tenant) {
+  TermStore(term_store) {
+    TermGroup(legal, Legal Terms) {
+      TermSet(matter_type, Legal Matter Types) {
+        TermSetDescription(Defines the available matter types.)
+        Term(Matter Type 1)
+        Term(Matter Type 2)
+        }
+      }
+    }
+  }
+'/
