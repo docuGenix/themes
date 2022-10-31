@@ -95,6 +95,7 @@ skinparam frame<<documentlibrary>> {
 !define Field(fieldName, fieldType) +fieldName : fieldType
 !define MetadataField(fieldName) *<b>fieldName : ManagedMetadata
 !define FieldReferencesTermSet(type, field, termset) type::field ..o termset
+!define FieldRefTermSet(field, termset) field ..o termset
 
 !define SharePointOnline(title) rectangle "title" as SharePoint <<sharepoint>>
 !define TeamSite(alias, title) frame "title" as alias <<teamsite>>
