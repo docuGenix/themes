@@ -1,6 +1,20 @@
 /'
 A PlantUml include file with styling and macros for describing
 Microsoft 365 managed metadata and content type definitions.
+
+Usage:
+
+Tenant(m365, An M365 Tenant) {
+  TermStore(term_store) {
+    TermGroup(legal, Legal Terms) {
+      TermSet(matter_type, Legal Matter Types) {
+        TermSetDescription(Defines the available matter types.)
+        Term(Matter Type 1)
+        Term(Matter Type 2)
+        }
+      }
+    }
+  }
 '/
 
 ' M365 Styling
@@ -90,18 +104,3 @@ skinparam frame<<documentlibrary>> {
 !define DocumentLibrary(alias, title) rectangle "title" as alias <<documentlibrary>>
 !define DocumentLibraryDescription(text) <i><color:RoyalBlue>text</i>
 
-/'
-Example:
-
-Tenant(m365, An M365 Tenant) {
-  TermStore(term_store) {
-    TermGroup(legal, Legal Terms) {
-      TermSet(matter_type, Legal Matter Types) {
-        TermSetDescription(Defines the available matter types.)
-        Term(Matter Type 1)
-        Term(Matter Type 2)
-        }
-      }
-    }
-  }
-'/
